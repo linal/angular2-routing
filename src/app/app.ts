@@ -10,18 +10,21 @@ import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, RouterLink, RouterOutl
 
 @Component({
     selector: 'childItem',
+    directives: [COMMON_DIRECTIVES, CORE_DIRECTIVES, ROUTER_DIRECTIVES, RouterLink],
     template: `<h2>Child Item</h2>
-    <a [routerLink]="['/SubItem1']">SubItem1</a>
-    <a [routerLink]="['/SubItem2']">SubItem2</a>
-    <a [routerLink]="['/SubItem3']">SubItem3</a>
+    <ul>
+    <li><a [routerLink]="['/SubItem1']">SubItem1</a></li>
+    <li><a [routerLink]="['/SubItem2']">SubItem2</a></li>
+    <li><a [routerLink]="['/SubItem3']">SubItem3</a></li>
+    </ul>
     `
 })
+/*
 @RouteConfig([
-        { path: '/', redirectTo: ['/1'] },
-        { path: '/', component: SubItem1, as: 'SubItem1' },
+        { path: '/1', component: SubItem1, as: 'SubItem1' },
         { path: '/2/', component: SubItem2, as: 'SubItem2' },
         { path: '/3/', component: SubItem3, as: 'SubItem3' }
-])
+])*/
 export class ChildItem{}
 
 
@@ -29,10 +32,9 @@ export class ChildItem{}
     selector: 'home',
     directives: [COMMON_DIRECTIVES, CORE_DIRECTIVES, ROUTER_DIRECTIVES, RouterLink],
     template: `<h2>Home page</h2>
-    <a [routerLink]="['/ChildItem']">Child Item</a>`
+    <a [routerLink]="['/ChildItem']">Click Me</a>`
 })
 export class Home{}
-
 
 
 @Component({
@@ -43,7 +45,11 @@ export class Home{}
 })
 @RouteConfig([
         { path: '/', component: Home, as: 'Home' },
-        { path: '/child/...', component: ChildItem, as: 'ChildItem' }
+        /*{ path: '/child/...', component: ChildItem, as: 'ChildItem' },*/
+        { path: '/child', component: ChildItem, as: 'ChildItem' },
+        { path: '/child/1/', component: SubItem1, as: 'SubItem1' },
+        { path: '/child/2/', component: SubItem2, as: 'SubItem2' },
+        { path: '/child/3/', component: SubItem3, as: 'SubItem3' }
 ])
 export class AppComponent {}
 
