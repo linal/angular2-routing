@@ -13,18 +13,19 @@ import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, RouterLink, RouterOutl
     directives: [COMMON_DIRECTIVES, CORE_DIRECTIVES, ROUTER_DIRECTIVES, RouterLink],
     template: `<h2>Child Item</h2>
     <ul>
-    <li><a [routerLink]="['/SubItem1']">SubItem1</a></li>
-    <li><a [routerLink]="['/SubItem2']">SubItem2</a></li>
-    <li><a [routerLink]="['/SubItem3']">SubItem3</a></li>
+    <li><a [routerLink]="['/ChildItem/SubItem1']">SubItem1</a></li>
+    <li><a [routerLink]="['/ChildItem/SubItem2']">SubItem2</a></li>
+    <li><a [routerLink]="['/ChildItem/SubItem3']">SubItem3</a></li>
     </ul>
+    <router-outlet></router-outlet>
     `
 })
-/*
+
 @RouteConfig([
-        { path: '/1', component: SubItem1, as: 'SubItem1' },
-        { path: '/2/', component: SubItem2, as: 'SubItem2' },
-        { path: '/3/', component: SubItem3, as: 'SubItem3' }
-])*/
+        { path: '/1', component: SubItem1, name: 'SubItem1', useAsDefault: true },
+        { path: '/2/', component: SubItem2, name: 'SubItem2' },
+        { path: '/3/', component: SubItem3, name: 'SubItem3' }
+])
 export class ChildItem{}
 
 
@@ -44,12 +45,12 @@ export class Home{}
   directives: [ROUTER_DIRECTIVES, RouterLink, RouterOutlet]
 })
 @RouteConfig([
-        { path: '/', component: Home, as: 'Home' },
-        /*{ path: '/child/...', component: ChildItem, as: 'ChildItem' },*/
-        { path: '/child', component: ChildItem, as: 'ChildItem' },
-        { path: '/child/1/', component: SubItem1, as: 'SubItem1' },
-        { path: '/child/2/', component: SubItem2, as: 'SubItem2' },
-        { path: '/child/3/', component: SubItem3, as: 'SubItem3' }
+        { path: '/', component: Home, name: 'Home' },
+        { path: '/child/...', component: ChildItem, name: 'ChildItem' }/*,
+        { path: '/child', component: ChildItem, name: 'ChildItem' },
+        { path: '/child/1/', component: SubItem1, name: 'SubItem1' },
+        { path: '/child/2/', component: SubItem2, name: 'SubItem2' },
+        { path: '/child/3/', component: SubItem3, name: 'SubItem3' }*/
 ])
 export class AppComponent {}
 

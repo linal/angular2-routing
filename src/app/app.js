@@ -48,8 +48,13 @@ var ChildItem = (function () {
         core_1.Component({
             selector: 'childItem',
             directives: [common_1.COMMON_DIRECTIVES, common_1.CORE_DIRECTIVES, router_1.ROUTER_DIRECTIVES, router_1.RouterLink],
-            template: "<h2>Child Item</h2>\n    <ul>\n    <li><a [routerLink]=\"['/SubItem1']\">SubItem1</a></li>\n    <li><a [routerLink]=\"['/SubItem2']\">SubItem2</a></li>\n    <li><a [routerLink]=\"['/SubItem3']\">SubItem3</a></li>\n    </ul>\n    "
-        }), 
+            template: "<h2>Child Item</h2>\n    <ul>\n    <li><a [routerLink]=\"['/ChildItem/SubItem1']\">SubItem1</a></li>\n    <li><a [routerLink]=\"['/ChildItem/SubItem2']\">SubItem2</a></li>\n    <li><a [routerLink]=\"['/ChildItem/SubItem3']\">SubItem3</a></li>\n    </ul>\n    <router-outlet></router-outlet>\n    "
+        }),
+        router_1.RouteConfig([
+            { path: '/1', component: SubItem1, name: 'SubItem1', useAsDefault: true },
+            { path: '/2/', component: SubItem2, name: 'SubItem2' },
+            { path: '/3/', component: SubItem3, name: 'SubItem3' }
+        ]), 
         __metadata('design:paramtypes', [])
     ], ChildItem);
     return ChildItem;
@@ -79,12 +84,12 @@ var AppComponent = (function () {
             directives: [router_1.ROUTER_DIRECTIVES, router_1.RouterLink, router_1.RouterOutlet]
         }),
         router_1.RouteConfig([
-            { path: '/', component: Home, as: 'Home' },
-            /*{ path: '/child/...', component: ChildItem, as: 'ChildItem' },*/
-            { path: '/child', component: ChildItem, as: 'ChildItem' },
-            { path: '/child/1/', component: SubItem1, as: 'SubItem1' },
-            { path: '/child/2/', component: SubItem2, as: 'SubItem2' },
-            { path: '/child/3/', component: SubItem3, as: 'SubItem3' }
+            { path: '/', component: Home, name: 'Home' },
+            { path: '/child/...', component: ChildItem, name: 'ChildItem' } /*,
+            { path: '/child', component: ChildItem, name: 'ChildItem' },
+            { path: '/child/1/', component: SubItem1, name: 'SubItem1' },
+            { path: '/child/2/', component: SubItem2, name: 'SubItem2' },
+            { path: '/child/3/', component: SubItem3, name: 'SubItem3' }*/
         ]), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
